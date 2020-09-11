@@ -32,4 +32,13 @@ public class StudentService {
         studentRepository.delete(name);
     }
 
+    public StudentRequest getStudent(String name) {
+        Student student = studentRepository.getStudent(name);
+        return  StudentRequest.builder()
+                .studentName(student.getName())
+                .studentGender(student.getGender())
+                .studentNote(student.getNote())
+                .build();
+    }
+
 }

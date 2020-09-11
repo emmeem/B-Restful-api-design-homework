@@ -17,7 +17,8 @@ public class StudentController {
 
     @PostMapping("/students")
     public ResponseEntity addStudent(@RequestBody StudentRequest studentRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.addStudent(studentRequest));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(studentService.addStudent(studentRequest));
     }
 
 
@@ -25,6 +26,12 @@ public class StudentController {
     public ResponseEntity deleteStudent(@PathVariable String studentName) {
         studentService.deleteStudent(studentName);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/students/{studentName}")
+    public ResponseEntity<StudentRequest> getStudent(@PathVariable String studentName) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(studentService.getStudent(studentName));
     }
 
 }

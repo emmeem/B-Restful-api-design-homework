@@ -24,4 +24,9 @@ public class RepositoryImpl implements StudentRepository {
     public void delete(String name) {
         students.remove(name);
     }
+
+    @Override
+    public Student getStudent(String name) {
+        return students.get(name);
+    }
 }

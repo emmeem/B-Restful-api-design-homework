@@ -8,4 +8,6 @@ public interface StudentRepository {
     Student save( Student student);
 
     void delete(String name);
+
+    Student getStudent(String name);
 }
