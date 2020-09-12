@@ -56,4 +56,15 @@ public class RepositoryImpl implements StudentRepository {
         List<Student> studentList = new ArrayList<>(students.values());
         return  studentList;
     }
+
+    @Override
+    public List<Student> getStudentsByGender(String gender) {
+        List<Student> studentList = new ArrayList<>();
+        for (Student student : students.values()) {
+            if(student.getGender().equals(gender)) {
+                studentList.add(student);
+            }
+        }
+        return  studentList;
+    }
 }

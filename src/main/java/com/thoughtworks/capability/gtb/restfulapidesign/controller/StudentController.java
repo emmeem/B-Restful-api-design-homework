@@ -35,9 +35,15 @@ public class StudentController {
                .body(studentService.getStudents());
     }
 
+    @GetMapping("/students/genders/{gender}")
+    public ResponseEntity<List<Student>> getStudentsByGender(@PathVariable String gender) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(studentService.getStudentsByGender(gender));
+    }
+
     @GetMapping("/students/{name}")
     public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.OK)
                 .body(studentService.getStudentByName(name));
     }
 

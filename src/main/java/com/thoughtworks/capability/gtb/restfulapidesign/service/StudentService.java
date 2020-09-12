@@ -27,6 +27,10 @@ public class StudentService {
         return studentRepository.getStudents();
     }
 
+    public List<Student> getStudentsByGender(String gender) {
+        return studentRepository.getStudentsByGender(gender);
+    }
+
     public Student getStudentByName(String name) {
         return studentRepository.findByName(name);
     }
