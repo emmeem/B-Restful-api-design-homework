@@ -1,6 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
-import com.thoughtworks.capability.gtb.restfulapidesign.dto.StudentRequest;
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,27 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity addStudent(@RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(studentService.addStudent(studentRequest));
+                .body(studentService.addStudent(student));
     }
 
-
-    @DeleteMapping("/students/{studentName}")
-    public ResponseEntity deleteStudent(@PathVariable String studentName) {
-        studentService.deleteStudent(studentName);
+    @DeleteMapping("/students/{name}")
+    public ResponseEntity deleteStudent(@PathVariable String name) {
+        studentService.deleteStudent(name);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/students/{studentName}")
-    public ResponseEntity<StudentRequest> getStudent(@PathVariable String studentName) {
+    @GetMapping("/students/{name}")
+    public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(studentService.getStudent(studentName));
+                .body(studentService.getStudentByName(name));
+    }
+
+    @PatchMapping("/students/{id}")
+    public ResponseEntity updateStudentInfo(@PathVariable Integer id, @RequestBody Student student) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(studentService.updateStudentInfo(id ,student));
     }
 
 }

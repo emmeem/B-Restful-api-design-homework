@@ -9,5 +9,9 @@ public interface StudentRepository {
 
     void delete(String name);
 
-    Student getStudent(String name);
+    Student findByName(String name);
+
+    Student update(Integer id, Student student);
+
+    Student findById(Integer id);
 }
