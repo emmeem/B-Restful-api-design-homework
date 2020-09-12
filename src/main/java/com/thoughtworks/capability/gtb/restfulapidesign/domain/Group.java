@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -12,5 +14,6 @@ import lombok.NoArgsConstructor;
 public class Group {
     private Integer id;
     private String name;
+    private List<Student> studentList;
     private String note;
 }

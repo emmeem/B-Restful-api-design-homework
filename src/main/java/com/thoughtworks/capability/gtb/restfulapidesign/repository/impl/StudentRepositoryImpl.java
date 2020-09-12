@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 @Repository
-public class RepositoryImpl implements StudentRepository {
+public class StudentRepositoryImpl implements StudentRepository {
     private final Map<Integer,Student> students = new HashMap<>();
 
     @Override
@@ -54,7 +54,7 @@ public class RepositoryImpl implements StudentRepository {
     @Override
     public List<Student> getStudents() {
         List<Student> studentList = new ArrayList<>(students.values());
-        return  studentList;
+        return studentList;
     }
 
     @Override
