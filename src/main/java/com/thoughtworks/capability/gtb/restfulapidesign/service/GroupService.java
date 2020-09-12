@@ -10,14 +10,18 @@ import java.util.List;
 @Service
 public class GroupService {
     private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository;
+
 
     public GroupService(GroupRepository groupRepository, StudentRepository studentRepository) {
         this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
     }
 
     public List<Group> getGroups() {
-        return groupRepository.getGroups(studentRepository.getStudents());
+        return groupRepository.getGroups();
     }
+
+    public boolean updateGroupNameById(Integer id, String name) {
+        return groupRepository.updateGroupNameById(id, name);
+    }
+
 }

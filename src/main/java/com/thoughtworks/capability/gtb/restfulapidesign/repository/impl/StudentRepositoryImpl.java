@@ -22,13 +22,10 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public void delete(String name) {
-        for (Student student : students.values()) {
-            if(student.getName() == name) {
+    public void delete(Student student) {
                 students.keySet().removeIf(key -> key == student.getId());
-            }
-        }
     }
+
 
     @Override
     public Student findByName(String name) {

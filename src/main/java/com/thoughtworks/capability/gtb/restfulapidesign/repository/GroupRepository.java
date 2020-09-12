@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface GroupRepository {
 
-    List<Group> getGroups(List<Student> studentList);
+    List<Group> getGroups();
+
+    boolean updateGroupNameById(Integer id, String name);
 }

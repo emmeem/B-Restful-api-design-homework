@@ -20,7 +20,10 @@ public class StudentService {
     }
 
     public void deleteStudent(String name) {
-        studentRepository.delete(name);
+       Student student = studentRepository.findByName(name);
+       if(student != null) {
+           studentRepository.delete(student);
+       }
     }
 
     public List<Student> getStudents() {

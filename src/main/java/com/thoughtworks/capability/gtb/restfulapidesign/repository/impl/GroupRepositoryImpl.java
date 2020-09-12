@@ -3,6 +3,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.repository.impl;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.GroupRepository;
+import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,10 +12,37 @@ import java.util.List;
 
 @Repository
 public class GroupRepositoryImpl implements GroupRepository {
+    private List<Group> groups = new ArrayList<>();
+
+    private List<String> groupsName = new ArrayList<String>() {
+        {
+            add("Group 1");
+            add("Group 2");
+            add("Group 3");
+            add("Group 4");
+            add("Group 5");
+            add("Group 6");
+        }
+    };
+
+    private final StudentRepository studentRepository;
+
+    public GroupRepositoryImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
 
     @Override
-    public List<Group> getGroups(List<Student> studentList) {
-       return SubGroup(studentList);
+    public boolean updateGroupNameById(Integer id, String name) {
+        Group group = groups.get(id - 1);
+        group.setName(name);
+        groupsName.set(id-1, name);
+        return true;
+    }
+
+    @Override
+    public List<Group> getGroups() {
+        return SubGroup(studentRepository.getStudents());
     }
 
     public List<Group> SubGroup(List<Student> studentList) {
@@ -26,7 +54,7 @@ public class GroupRepositoryImpl implements GroupRepository {
         if(initGroup*groupNum < stuSize) {
             restStudents = stuSize - initGroup*groupNum;
         }
-        List<Group> studentGroup = new ArrayList<>();
+
         int total=0;
         for(int i=0; i<groupNum; i++) {
             List<Student> mid = new ArrayList<>();
@@ -42,11 +70,10 @@ public class GroupRepositoryImpl implements GroupRepository {
                 }
             }
 
-            Group tmp = new Group(i+1,"Group" + (i + 1), mid,null);
-            studentGroup.add(tmp);
+            Group tmp = new Group(i+1,groupsName.get(i), mid,null);
+            groups.add(tmp);
             restStudents = restStudents - 1;
         }
-        return studentGroup;
+        return groups;
     }
-
 }

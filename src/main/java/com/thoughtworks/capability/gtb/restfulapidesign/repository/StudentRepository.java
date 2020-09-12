@@ -9,7 +9,7 @@ import java.util.List;
 public interface StudentRepository {
     Student save( Student student);
 
-    void delete(String name);
+    void delete(Student student);
 
     Student findByName(String name);
 
