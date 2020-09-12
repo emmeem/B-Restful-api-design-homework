@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
 
@@ -25,6 +27,12 @@ public class StudentController {
     public ResponseEntity deleteStudent(@PathVariable String name) {
         studentService.deleteStudent(name);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<List<Student>> getStudents() {
+        return ResponseEntity.status(HttpStatus.OK)
+               .body(studentService.getStudents());
     }
 
     @GetMapping("/students/{name}")

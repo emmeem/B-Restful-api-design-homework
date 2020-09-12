@@ -4,7 +4,9 @@ import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -47,5 +49,11 @@ public class RepositoryImpl implements StudentRepository {
     @Override
     public Student findById(Integer id) {
         return students.get(id);
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        List<Student> studentList = new ArrayList<>(students.values());
+        return  studentList;
     }
 }
