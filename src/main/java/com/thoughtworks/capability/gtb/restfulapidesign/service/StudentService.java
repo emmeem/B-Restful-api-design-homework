@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotFoundException;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +40,10 @@ public class StudentService {
     }
 
     public Student updateStudentInfo(Integer id, Student student) {
-        if(studentRepository.findById(id) != null) {
+        if(studentRepository.findById(student.getId()) != null) {
             return studentRepository.update(id, student);
+        }else {
+            throw new StudentNotFoundException("学生不存在");
         }
-        return null;
     }
 }
