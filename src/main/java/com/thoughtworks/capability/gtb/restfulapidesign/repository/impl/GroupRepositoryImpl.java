@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public class GroupRepositoryImpl implements GroupRepository {
-    private List<Group> groups = new ArrayList<>();
 
     private List<String> groupsName = new ArrayList<String>() {
         {
@@ -34,8 +33,6 @@ public class GroupRepositoryImpl implements GroupRepository {
 
     @Override
     public boolean updateGroupNameById(Integer id, String name) {
-        Group group = groups.get(id - 1);
-        group.setName(name);
         groupsName.set(id-1, name);
         return true;
     }
@@ -46,6 +43,7 @@ public class GroupRepositoryImpl implements GroupRepository {
     }
 
     public List<Group> SubGroup(List<Student> studentList) {
+        List<Group> groups = new ArrayList<>();
         Collections.shuffle(studentList);
         int stuSize = studentList.size();
         int groupNum = 6;
